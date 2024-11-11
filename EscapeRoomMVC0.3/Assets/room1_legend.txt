@@ -1,0 +1,7 @@
+B - Półka z książkami
+C - Żyrandol
+D - Drzwi wyjściowe z zamkiem na klawiaturę
+T - Biurko
+J - Dziennik na biurku
+P - Obraz oka
+M - Pajęczyna w rogu

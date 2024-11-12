@@ -15,7 +15,6 @@ C:\Users\Asus\source\repos\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\re
 C:\Users\Asus\source\repos\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\room1_legend.txt
 C:\Users\Asus\source\repos\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\room1_map.txt
 C:\Users\Asus\Documents\GitHub\EscapeRoomMVC0.3.1\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\room1_legend.txt
-C:\Users\Asus\Documents\GitHub\EscapeRoomMVC0.3.1\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\room1_map.txt
 C:\Users\Asus\Documents\GitHub\EscapeRoomMVC0.3.1\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\EscapeRoomMVC0.3.exe
 C:\Users\Asus\Documents\GitHub\EscapeRoomMVC0.3.1\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\EscapeRoomMVC0.3.deps.json
 C:\Users\Asus\Documents\GitHub\EscapeRoomMVC0.3.1\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\EscapeRoomMVC0.3.runtimeconfig.json

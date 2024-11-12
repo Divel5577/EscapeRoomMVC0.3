@@ -1,4 +1,5 @@
 ﻿using EscapeRoomMVC0._3.Controllers;
+using EscapeRoomMVC0._3.Helpers;
 using EscapeRoomMVC0._3.Models;
 using EscapeRoomMVC0._3.Views;
 
@@ -11,16 +12,7 @@ public class Program
         Room startRoom = new Room("Biblioteka", "Assets/room1_map.txt", "Assets/room1_legend.txt");
 
         // Inicjalizacja przedmiotów w pokoju
-        var bookshelf = new Item("Półka z książkami", "Stara półka pełna książek.", false, 3, 2);
-        bookshelf.AddInteraction("Oglądaj");
-        bookshelf.AddInteraction("Przesuń");
-
-        var desk = new Item("Biurko", "Drewniane biurko z dziennikiem na wierzchu.", false, 8, 5);
-        desk.AddInteraction("Oglądaj");
-        desk.AddInteraction("Przeszukaj");
-
-        startRoom.AddItem(bookshelf);
-        startRoom.AddItem(desk);
+        RoomInitializer.InitializeItems(startRoom);
 
 
         GameController gameController = new GameController(player, startRoom);

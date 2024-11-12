@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EscapeRoomMVC0._3.Models
 {
-    public class Item
+    public abstract class Item
     {
         public string Name { get; set; }
         public string Description { get; set; }

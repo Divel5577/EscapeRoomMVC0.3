@@ -1,4 +1,5 @@
 ﻿using EscapeRoomMVC0._3.Models;
+using EscapeRoomMVC0._3.Models.Items;
 using EscapeRoomMVC0._3.Views;
 using System;
 using System.Collections.Generic;
@@ -79,8 +80,18 @@ namespace EscapeRoomMVC0._3.Controllers
             var item = player.Inventory.GetItem(itemName);
             if (item != null)
             {
-                Console.WriteLine($"Użyłeś {item.Name}.");
-                player.Inventory.RemoveItem(itemName); // Usuń przedmiot po użyciu, jeśli to konieczne
+                if (item is Journal)
+                {
+                    Console.WriteLine("Czytasz dziennik. Zawiera wskazówki dotyczące otwarcia sejfu i drzwi.");
+                }
+                else if (item is Key)
+                {
+                    Console.WriteLine("Klucz może być użyty tylko przy drzwiach.");
+                }
+                else
+                {
+                    Console.WriteLine($"Użyłeś {item.Name}, ale nic się nie wydarzyło.");
+                }
             }
             else
             {
@@ -101,10 +112,70 @@ namespace EscapeRoomMVC0._3.Controllers
                     {
                         player.Inventory.AddItem(item);
                         Console.WriteLine($"{item.Name} został dodany do ekwipunku.");
+                        // Usunięcie przedmiotu z pokoju po zebraniu
+                        currentRoom.Items.Remove(item);
                     }
                     break;
-                case "Użyj":
-                    UseItemFromInventory(item.Name);
+                case "Przesuń":
+                    if (item is Bookshelf || item is Painting)
+                    {
+                        Console.WriteLine($"Przesunąłeś {item.Name}.");
+                        // Jeśli to obraz, odsłoń sejf
+                        if (item is Painting)
+                        {
+                            var safe = currentRoom.HiddenItems.FirstOrDefault(i => i is Safe);
+                            if (safe != null)
+                            {
+                                currentRoom.RevealItem(safe);
+                                Console.WriteLine("Odkryłeś sejf ukryty za obrazem!");
+                            }
+                        }
+                    }
+                    break;
+                case "Otwórz":
+                    if (item is Safe safeItem)
+                    {
+                        Console.Write("Podaj kod do sejfu: ");
+                        string code = Console.ReadLine();
+                        safeItem.Open(code);
+                        if (safeItem.IsOpen)
+                        {
+                            // Odsłoń klucz w sejfie
+                            var key = currentRoom.HiddenItems.FirstOrDefault(i => i is Key);
+                            if (key != null)
+                            {
+                                key.PositionX = player.PositionX;
+                                key.PositionY = player.PositionY;
+                                currentRoom.RevealItem(key);
+                                Console.WriteLine("Znalazłeś klucz w sejfie!");
+                            }
+                        }
+                    }
+                    else if (item is Door)
+                    {
+                        Console.Write("Podaj kod do drzwi: ");
+                        string code = Console.ReadLine();
+                        if (player.Inventory.ContainsItem("Klucz") && code == "5678") // Przykładowy kod
+                        {
+                            Console.WriteLine("Otworzyłeś drzwi i wydostałeś się z pokoju. Gratulacje!");
+                            // Logika zakończenia gry
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nie udało się otworzyć drzwi.");
+                        }
+                    }
+                    break;
+                case "Przeszukaj":
+                    if (item is Desk)
+                    {
+                        Console.WriteLine("Przeszukując biurko, znalazłeś dziennik.");
+                        // Dziennik jest już na biurku, więc nie musimy nic więcej robić
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Brak dostępnej akcji.");
                     break;
             }
         }

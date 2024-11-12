@@ -13,6 +13,7 @@ namespace EscapeRoomMVC0._3.Models
         public string Legend { get; private set; } // Nowa właściwość na legendę
         public List<Item> Items { get; private set; }
         public Dictionary<string, Room> Exits { get; private set; }
+        public List<Item> HiddenItems { get; private set; } // Nowa lista ukrytych przedmiotów
 
         public Room(string name, string mapFilePath, string legendFilePath)
         {
@@ -21,6 +22,7 @@ namespace EscapeRoomMVC0._3.Models
             Exits = new Dictionary<string, Room>();
             LoadMapFromFile(mapFilePath);
             LoadLegendFromFile(legendFilePath);
+            HiddenItems = new List<Item>();
         }
 
         // Metoda do wczytywania mapy z pliku
@@ -55,7 +57,17 @@ namespace EscapeRoomMVC0._3.Models
         {
             Items.Add(item);
         }
+        public void RemoveItem(Item item) { Items.Remove(item); }
 
+        // Metoda do dodawania ukrytego przedmiotu do widocznych przedmiotów
+        public void RevealItem(Item item)
+        {
+            if (HiddenItems.Contains(item))
+            {
+                HiddenItems.Remove(item);
+                Items.Add(item);
+            }
+        }
         public void SetExit(string direction, Room room)
         {
             Exits[direction] = room;

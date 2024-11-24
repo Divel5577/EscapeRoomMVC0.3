@@ -4,6 +4,18 @@ namespace EscapeRoomMVC.Views
 {
     public static class DisplayMap
     {
+        public static void Update(Room room, Player player)
+        {
+            var mapLines = room.AsciiMap.Split('\n');
+            // Odśwież poprzednią pozycję gracza
+            Console.SetCursorPosition(player.LastPositionX, player.LastPositionY + 1);
+            Console.Write(mapLines[player.LastPositionY][player.LastPositionX]);
+
+            // Odśwież nową pozycję gracza
+            Console.SetCursorPosition(player.PositionX, player.PositionY + 1);
+            Console.Write('@');
+        }
+
         public static void Show(Room room, Player player)
         {
             Console.Clear();
@@ -12,24 +24,17 @@ namespace EscapeRoomMVC.Views
             var mapLines = room.AsciiMap.Split('\n');
             for (int y = 0; y < mapLines.Length; y++)
             {
-                for (int x = 0; x < mapLines[y].Length; x++)
-                {
-                    if (x == player.PositionX && y == player.PositionY)
-                    {
-                        Console.Write('@');
-                    }
-                    else
-                    {
-                        Console.Write(mapLines[y][x]);
-                    }
-                }
-                Console.WriteLine();
+                Console.WriteLine(mapLines[y]);
             }
 
+            // Rysujemy gracza w jego początkowej pozycji
+            Console.SetCursorPosition(player.PositionX, player.PositionY + 1);
+            Console.Write('@');
+            Console.SetCursorPosition(0, mapLines.Length + 2);
             Console.WriteLine("\nLegenda:");
             Console.WriteLine(room.Legend);
-
             Console.WriteLine("\nNaciśnij strzałki, aby się poruszać lub I, aby otworzyć ekwipunek.");
         }
+
     }
 }

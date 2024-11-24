@@ -44,7 +44,9 @@ namespace EscapeRoomMVC.Controllers
             {
                 player.Move(deltaX, deltaY);
 
-                // Sprawdzenie, czy gracz wszedł na przedmiot
+                // Zaktualizuj tylko część mapy
+                DisplayMap.Update(currentRoom, player);
+
                 var item = GetItemAtPosition(newX, newY);
                 if (item != null)
                 {
@@ -52,6 +54,8 @@ namespace EscapeRoomMVC.Controllers
                 }
             }
         }
+
+
 
         private bool IsPositionWalkable(int x, int y)
         {

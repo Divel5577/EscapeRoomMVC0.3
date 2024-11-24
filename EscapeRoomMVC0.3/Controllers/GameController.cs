@@ -52,7 +52,7 @@ namespace EscapeRoomMVC0._3.Controllers
                 var item = GetItemAtPosition(newX, newY);
                 if (item != null)
                 {
-                    InteractWithItem(item); // Wyświetlenie menu interakcji
+                    player.Inventory.InteractWithItem(item); // Wywołanie metody interakcji
                 }
             }
         }
@@ -98,92 +98,21 @@ namespace EscapeRoomMVC0._3.Controllers
                 Console.WriteLine("Nie masz tego przedmiotu w ekwipunku.");
             }
         }
-        public void InteractWithItem(Item item)
-        {
-            int selectedInteraction = InteractionMenu.DisplayInteractions(item);
-
-            switch (item.Interactions[selectedInteraction])
-            {
-                case "Oglądaj":
-                    Console.WriteLine(item.Description);
-                    break;
-                case "Zbierz":
-                    if (item.IsCollectible)
-                    {
-                        player.Inventory.AddItem(item);
-                        Console.WriteLine($"{item.Name} został dodany do ekwipunku.");
-                        // Usunięcie przedmiotu z pokoju po zebraniu
-                        currentRoom.Items.Remove(item);
-                    }
-                    break;
-                case "Przesuń":
-                    if (item is Bookshelf || item is Painting)
-                    {
-                        Console.WriteLine($"Przesunąłeś {item.Name}.");
-                        // Jeśli to obraz, odsłoń sejf
-                        if (item is Painting)
-                        {
-                            var safe = currentRoom.HiddenItems.FirstOrDefault(i => i is Safe);
-                            if (safe != null)
-                            {
-                                currentRoom.RevealItem(safe);
-                                Console.WriteLine("Odkryłeś sejf ukryty za obrazem!");
-                            }
-                        }
-                    }
-                    break;
-                case "Otwórz":
-                    if (item is Safe safeItem)
-                    {
-                        Console.Write("Podaj kod do sejfu: ");
-                        string code = Console.ReadLine();
-                        safeItem.Open(code);
-                        if (safeItem.IsOpen)
-                        {
-                            // Odsłoń klucz w sejfie
-                            var key = currentRoom.HiddenItems.FirstOrDefault(i => i is Key);
-                            if (key != null)
-                            {
-                                key.PositionX = player.PositionX;
-                                key.PositionY = player.PositionY;
-                                currentRoom.RevealItem(key);
-                                Console.WriteLine("Znalazłeś klucz w sejfie!");
-                            }
-                        }
-                    }
-                    else if (item is Door)
-                    {
-                        Console.Write("Podaj kod do drzwi: ");
-                        string code = Console.ReadLine();
-                        if (player.Inventory.ContainsItem("Klucz") && code == "5678") // Przykładowy kod
-                        {
-                            Console.WriteLine("Otworzyłeś drzwi i wydostałeś się z pokoju. Gratulacje!");
-                            // Logika zakończenia gry
-                            Environment.Exit(0);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Nie udało się otworzyć drzwi.");
-                        }
-                    }
-                    break;
-                case "Przeszukaj":
-                    if (item is Desk)
-                    {
-                        Console.WriteLine("Przeszukując biurko, znalazłeś dziennik.");
-                        // Dziennik jest już na biurku, więc nie musimy nic więcej robić
-                    }
-                    break;
-                default:
-                    Console.WriteLine("Brak dostępnej akcji.");
-                    break;
-            }
-        }
-
-
         public void ShowInventory()
         {
-            player.Inventory.DisplayItems();
+            bool exitInventory = false;
+
+            while (!exitInventory)
+            {
+                Console.Clear();
+                exitInventory = player.Inventory.ShowInventoryMenu(); // Zmieniona metoda zwróci true po wyjściu z ekwipunku
+            }
+
+            // Po wyjściu z ekwipunku wracamy do wyświetlenia mapy
+            DisplayMap.Show(currentRoom, player);
         }
+
+
+
     }
 }

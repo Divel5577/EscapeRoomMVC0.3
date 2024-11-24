@@ -22,28 +22,30 @@ namespace EscapeRoomMVC0._3.Views
                 {
                     if (i == selectedIndex)
                     {
-                        Console.WriteLine($"> {item.Interactions[i]}"); // Wskaźnik na aktualnie wybraną opcję
+                        Console.WriteLine($"> {item.Interactions[i]}");
                     }
                     else
                     {
                         Console.WriteLine($"  {item.Interactions[i]}");
                     }
                 }
+                Console.WriteLine("  Wróć");
 
                 key = Console.ReadKey().Key;
 
                 if (key == ConsoleKey.UpArrow)
                 {
-                    selectedIndex = (selectedIndex == 0) ? item.Interactions.Count - 1 : selectedIndex - 1;
+                    selectedIndex = (selectedIndex == 0) ? item.Interactions.Count : selectedIndex - 1;
                 }
                 else if (key == ConsoleKey.DownArrow)
                 {
-                    selectedIndex = (selectedIndex == item.Interactions.Count - 1) ? 0 : selectedIndex + 1;
+                    selectedIndex = (selectedIndex == item.Interactions.Count) ? 0 : selectedIndex + 1;
                 }
 
             } while (key != ConsoleKey.Enter);
 
-            return selectedIndex;
+            // Zwraca -1, jeśli wybrano "Wróć"
+            return selectedIndex == item.Interactions.Count ? -1 : selectedIndex;
         }
     }
 

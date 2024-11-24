@@ -14,6 +14,7 @@ namespace EscapeRoomMVC0._3.Models
         public bool IsCollectible { get; set; }
         public int PositionX { get; set; } // Nowa właściwość
         public int PositionY { get; set; } // Nowa właściwość
+        public Item ContainedItem { get; set; }
 
         public Item(string name, string description, bool isCollectible, int positionX, int positionY)
         {

@@ -43,19 +43,21 @@ namespace EscapeRoomMVC0._3.Controllers
             int newX = player.PositionX + deltaX;
             int newY = player.PositionY + deltaY;
 
-            // Sprawdzamy, czy pozycja nowa nie wychodzi poza mapę i czy jest dostępna do ruchu
             if (IsPositionWalkable(newX, newY))
             {
                 player.Move(deltaX, deltaY);
 
-                // Sprawdzamy, czy gracz wszedł na przedmiot
+                // Zaktualizuj tylko część mapy
+                DisplayMap.Update(currentRoom, player);
+
                 var item = GetItemAtPosition(newX, newY);
                 if (item != null)
                 {
-                    player.Inventory.InteractWithItem(item); // Wywołanie metody interakcji
+                    player.Inventory.InteractWithItem(item);
                 }
             }
         }
+
 
 
         private bool IsPositionWalkable(int x, int y)

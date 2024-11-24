@@ -6,7 +6,7 @@
         public Item HiddenItem { get; }
 
         public Bookshelf(int positionX, int positionY, Item hiddenItem)
-            : base("Półka", "Wygląda, jakby można ją było przesunąć.", false, positionX, positionY)
+            : base("Biblioteczka", "Wygląda, jakby można ją było przesunąć.", false, positionX, positionY, "Assets/Images/bookshelf.jpg")
         {
             AddInteraction("Przesuń");
             IsMoved = false;
@@ -18,12 +18,12 @@
             if (interaction == "Przesuń" && !IsMoved)
             {
                 IsMoved = true;
-                Console.WriteLine("Przesunąłeś półkę i odkryłeś ukryty przedmiot!");
+                Console.WriteLine("Przesunąłeś biblioteczkę i odkryłeś ukryty przedmiot!");
                 inventory.AddItem(HiddenItem);
             }
             else if (interaction == "Przesuń" && IsMoved)
             {
-                Console.WriteLine("Półka już została przesunięta.");
+                Console.WriteLine("biblioteczka już została przesunięta.");
             }
             else
             {

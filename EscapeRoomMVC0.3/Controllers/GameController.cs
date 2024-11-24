@@ -83,21 +83,25 @@ namespace EscapeRoomMVC.Controllers
                 if (selectedIndex != -1)
                 {
                     string interaction = item.Interactions[selectedIndex];
+
+                    // Wyświetlanie obrazka ASCII zamiast opisu
+                    if (!string.IsNullOrEmpty(item.ImagePath))
+                    {
+                        AsciiPopup.Show(item.ImagePath);
+                    }
+
                     Console.Clear();
-
-                    // Wywołanie logiki interakcji
                     player.Inventory.PerformItemInteraction(item, interaction);
-
                     Console.WriteLine("\nNaciśnij Enter, aby wrócić do menu interakcji.");
                     Console.ReadLine();
                 }
                 else
                 {
-                    // Wyjście z menu interakcji
                     exitInteraction = true;
                 }
             }
         }
+
 
         public void ShowInventory()
         {

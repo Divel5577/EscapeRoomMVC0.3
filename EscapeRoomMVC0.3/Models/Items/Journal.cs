@@ -5,7 +5,7 @@
         public string Content { get; }
 
         public Journal(int positionX, int positionY)
-            : base("Dziennik", "Stary dziennik z pożółkłymi kartkami, leżący na biurku.", true, positionX, positionY)
+            : base("Dziennik", "Stary dziennik z pożółkłymi kartkami, leżący na biurku.", true, positionX, positionY, "Assets/Images/journal.jpg")
         {
             AddInteraction("Przeczytaj");
             Content = "Dziennik jest pełen wpisów o tajemniczych wydarzeniach...\n" +

@@ -1,9 +1,11 @@
-﻿namespace EscapeRoomMVC.Models.Items
+﻿using EscapeRoomMVC0._3.Views;
+
+namespace EscapeRoomMVC.Models.Items
 {
     public class Desk : Item
     {
         public Desk(int positionX, int positionY)
-            : base("Biurko", "Stare drewniane biurko. Wygląda, jakby miało coś w środku.", false, positionX, positionY)
+            : base("Biurko", "Stary drewniany stół.", false, positionX, positionY, "Assets/Images/desk.jpg")
         {
             AddInteraction("Przeszukaj");
         }

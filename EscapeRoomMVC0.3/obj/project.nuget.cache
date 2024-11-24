@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "VlVsCT2OQvQ=",
+  "dgSpecHash": "lTG0ZCkrglQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Asus\\Documents\\GitHub\\EscapeRoomMVC0.3.1\\EscapeRoomMVC0.3\\EscapeRoomMVC0.3\\EscapeRoomMVC0.3.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Visual Programy\\EscapeRoomMVC0.3\\EscapeRoomMVC0.3\\EscapeRoomMVC0.3.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\grac1\\.nuget\\packages\\sixlabors.imagesharp\\3.1.6\\sixlabors.imagesharp.3.1.6.nupkg.sha512",
+    "C:\\Users\\grac1\\.nuget\\packages\\spectre.console\\0.49.1\\spectre.console.0.49.1.nupkg.sha512"
+  ],
   "logs": []
 }

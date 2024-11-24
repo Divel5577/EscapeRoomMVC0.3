@@ -31,3 +31,32 @@ C:\Users\Asus\Documents\GitHub\EscapeRoomMVC0.3.1\EscapeRoomMVC0.3\EscapeRoomMVC
 C:\Users\Asus\Documents\GitHub\EscapeRoomMVC0.3.1\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRoomMVC0.3.genruntimeconfig.cache
 C:\Users\Asus\Documents\GitHub\EscapeRoomMVC0.3.1\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\ref\EscapeRoomMVC0.3.dll
 C:\Users\Asus\Documents\GitHub\EscapeRoomMVC0.3.1\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\room1_map.txt
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\room1_legend.txt
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\EscapeRoomMVC0.3.exe
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\room1_map.txt
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\EscapeRoomMVC0.3.deps.json
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\EscapeRoomMVC0.3.runtimeconfig.json
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\EscapeRoomMVC0.3.dll
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\EscapeRoomMVC0.3.pdb
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\SixLabors.ImageSharp.dll
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Spectre.Console.dll
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRoomMVC0.3.csproj.AssemblyReference.cache
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRoomMVC0.3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRoomMVC0.3.AssemblyInfoInputs.cache
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRoomMVC0.3.AssemblyInfo.cs
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRoomMVC0.3.csproj.CoreCompileInputs.cache
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRoomMVC0.3.sourcelink.json
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRo.494E4606.Up2Date
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRoomMVC0.3.dll
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\refint\EscapeRoomMVC0.3.dll
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRoomMVC0.3.pdb
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\EscapeRoomMVC0.3.genruntimeconfig.cache
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\obj\Debug\net8.0\ref\EscapeRoomMVC0.3.dll
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\Images\desk.jpg
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\Images\bookshelf.jpg
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\Images\chandelier.jpg
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\Images\door.jpg
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\Images\journal.jpg
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\Images\key.jpg
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\Images\painting.jpg
+C:\Visual Programy\EscapeRoomMVC0.3\EscapeRoomMVC0.3\bin\Debug\net8.0\Assets\Images\cobweb.jpg

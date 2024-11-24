@@ -112,6 +112,8 @@ namespace EscapeRoomMVC0._3.Models
 
             } while (key != ConsoleKey.Escape);
         }
+
+
         private void PerformItemInteraction(Item item, string interaction)
         {
             Console.Clear();
@@ -197,6 +199,28 @@ namespace EscapeRoomMVC0._3.Models
                         Console.WriteLine($"{item.Name} nie można otworzyć kluczem.");
                     }
                     break;
+                case "Otwórz":
+                    if (item is Door door)
+                    {
+                        Console.WriteLine("Podaj kod, aby otworzyć drzwi:");
+                        string inputCode = Console.ReadLine();
+
+                        if (door.TryOpen(inputCode))
+                        {
+                            Console.WriteLine("Drzwi zostały otwarte! Gratulacje, udało Ci się uciec!");
+                            Console.WriteLine("Dziękujemy za grę!");
+                            Environment.Exit(0); // Kończy grę
+                        }
+                        else
+                        {
+                            Console.WriteLine("Niepoprawny kod. Spróbuj ponownie.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Interakcja z {item.Name}.");
+                    }
+                    break;
                 case "Użyj":
                     Console.WriteLine($"Używasz {item.Name}.");
                     break;
@@ -207,7 +231,6 @@ namespace EscapeRoomMVC0._3.Models
             Console.WriteLine("\nNaciśnij Enter, aby wrócić...");
             Console.ReadLine();
         }
-
 
         public void ShowInventory()
         {

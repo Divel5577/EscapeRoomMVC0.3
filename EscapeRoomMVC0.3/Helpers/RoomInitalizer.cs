@@ -13,7 +13,7 @@ namespace EscapeRoomMVC0._3.Helpers
         public static void InitializeItems(Room room)
         {
             // Drzwi
-            var drzwi = new Door(26, 2);
+            var drzwi = new Door(26, 2, "4392");
             room.AddItem(drzwi);
 
             // Półka z książkami

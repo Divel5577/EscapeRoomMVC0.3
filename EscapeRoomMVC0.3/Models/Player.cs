@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EscapeRoomMVC0._3.Models
+﻿namespace EscapeRoomMVC.Models
 {
     public class Player
     {
@@ -16,7 +10,7 @@ namespace EscapeRoomMVC0._3.Models
         {
             PositionX = startX;
             PositionY = startY;
-            Inventory = new Inventory(); // Zmieniono na Inventory zamiast List<Item>
+            Inventory = new Inventory();
         }
 
         public void Move(int deltaX, int deltaY)
@@ -25,5 +19,4 @@ namespace EscapeRoomMVC0._3.Models
             PositionY += deltaY;
         }
     }
-
 }

@@ -1,11 +1,7 @@
-﻿using EscapeRoomMVC0._3.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EscapeRoomMVC.Models;
+using EscapeRoomMVC.Models.Items;
 
-namespace EscapeRoomMVC0._3.Views
+namespace EscapeRoomMVC.Views
 {
     public static class InteractionMenu
     {
@@ -18,20 +14,21 @@ namespace EscapeRoomMVC0._3.Views
             {
                 Console.Clear();
                 Console.WriteLine($"Interakcje z: {item.Name}");
+
                 for (int i = 0; i < item.Interactions.Count; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.WriteLine($"> {item.Interactions[i]}");
+                        Console.WriteLine($"> {item.Interactions[i]}"); // Opcja zaznaczona
                     }
                     else
                     {
                         Console.WriteLine($"  {item.Interactions[i]}");
                     }
                 }
-                Console.WriteLine("  Wróć");
+                Console.WriteLine("  Wróć"); // Opcja powrotu
 
-                key = Console.ReadKey().Key;
+                key = Console.ReadKey(true).Key; // Użycie ReadKey(true), aby uniknąć wyświetlania klawiszy
 
                 if (key == ConsoleKey.UpArrow)
                 {
@@ -41,13 +38,18 @@ namespace EscapeRoomMVC0._3.Views
                 {
                     selectedIndex = (selectedIndex == item.Interactions.Count) ? 0 : selectedIndex + 1;
                 }
+                else if (key == ConsoleKey.Enter)
+                {
+                    // Zwróć wybraną opcję
+                    return (selectedIndex == item.Interactions.Count) ? -1 : selectedIndex;
+                }
 
-            } while (key != ConsoleKey.Enter);
+            } while (key != ConsoleKey.Escape); // Opcja Esc pozwala wyjść z menu
 
-            // Zwraca -1, jeśli wybrano "Wróć"
-            return selectedIndex == item.Interactions.Count ? -1 : selectedIndex;
+            return -1; // Wróć w przypadku użycia Esc
         }
+
+
+
     }
-
-
 }

@@ -1,17 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EscapeRoomMVC0._3.Models.Items
+﻿namespace EscapeRoomMVC.Models.Items
 {
     public class Key : Item
     {
         public Key(int positionX, int positionY)
-            : base("Klucz", "Mały, metalowy klucz, który może gdzieś pasować.", true, positionX, positionY)
+            : base("Klucz", "Mały mosiężny klucz. Może pasować do zamka.", true, positionX, positionY)
         {
+            AddInteraction("Zbierz");
             AddInteraction("Oglądaj");
+        }
+
+        public override void OnInteract(string interaction, Inventory inventory)
+        {
+            if (interaction == "Zbierz")
+            {
+                if (inventory.HasItem("Klucz"))
+                {
+                    Console.WriteLine("Już masz klucz w swoim ekwipunku.");
+                }
+                else
+                {
+                    inventory.AddItem(this);
+                    Console.WriteLine("Dodałeś klucz do swojego ekwipunku.");
+                }
+            }
+            else if (interaction == "Oglądaj")
+            {
+                Console.WriteLine("To mały mosiężny klucz. Może pasować do zamka.");
+            }
+            else
+            {
+                Console.WriteLine($"Nieznana interakcja: {interaction}");
+            }
         }
     }
 }

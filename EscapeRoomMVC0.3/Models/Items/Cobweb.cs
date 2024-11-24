@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EscapeRoomMVC0._3.Models.Items
+﻿namespace EscapeRoomMVC.Models.Items
 {
     public class Cobweb : Item
     {
@@ -12,7 +6,18 @@ namespace EscapeRoomMVC0._3.Models.Items
             : base("Pajęczyna", "Gęsta pajęczyna pokrywająca róg pokoju.", false, positionX, positionY)
         {
             AddInteraction("Oglądaj");
-            // Pajęczyna może nie mieć innych interakcji
+        }
+
+        public override void OnInteract(string interaction, Inventory inventory)
+        {
+            if (interaction == "Oglądaj")
+            {
+                Console.WriteLine("To tylko pajęczyna. Nic tutaj nie znajdziesz.");
+            }
+            else
+            {
+                base.OnInteract(interaction, inventory);
+            }
         }
     }
 }

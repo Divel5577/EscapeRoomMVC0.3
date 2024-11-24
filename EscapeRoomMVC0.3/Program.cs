@@ -1,19 +1,16 @@
-﻿using EscapeRoomMVC0._3.Controllers;
-using EscapeRoomMVC0._3.Helpers;
-using EscapeRoomMVC0._3.Models;
-using EscapeRoomMVC0._3.Views;
+﻿using EscapeRoomMVC.Controllers;
+using EscapeRoomMVC.Helpers;
+using EscapeRoomMVC.Models;
+using EscapeRoomMVC.Views;
 
 public class Program
 {
     static void Main()
     {
-        // Inicjalizacja gracza, pokoju, mapy gry
         Player player = new Player(5, 5);
         Room startRoom = new Room("Biblioteka", "Assets/room1_map.txt", "Assets/room1_legend.txt");
 
-        // Inicjalizacja przedmiotów w pokoju
         RoomInitializer.InitializeItems(startRoom);
-
 
         GameController gameController = new GameController(player, startRoom);
 

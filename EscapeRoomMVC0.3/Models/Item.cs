@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EscapeRoomMVC0._3.Models
+namespace EscapeRoomMVC.Models.Items
 {
     public abstract class Item
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<string> Interactions { get; private set; }
         public bool IsCollectible { get; set; }
-        public int PositionX { get; set; } // Nowa właściwość
-        public int PositionY { get; set; } // Nowa właściwość
-        public Item ContainedItem { get; set; }
+        public int PositionX { get; set; }
+        public int PositionY { get; set; }
+        public List<string> Interactions { get; private set; }
 
-        public Item(string name, string description, bool isCollectible, int positionX, int positionY)
+        protected Item(string name, string description, bool isCollectible, int positionX, int positionY)
         {
             Name = name;
             Description = description;
@@ -24,6 +20,11 @@ namespace EscapeRoomMVC0._3.Models
             PositionX = positionX;
             PositionY = positionY;
             Interactions = new List<string>();
+        }
+
+        public virtual void OnInteract(string interaction, Inventory inventory)
+        {
+            Console.WriteLine($"Interakcja z {Name}: {interaction}");
         }
 
         public void AddInteraction(string interaction)

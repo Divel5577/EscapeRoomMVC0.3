@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EscapeRoomMVC0._3.Models.Items
+﻿namespace EscapeRoomMVC.Models.Items
 {
     public class Chandelier : Item
     {
@@ -12,6 +6,18 @@ namespace EscapeRoomMVC0._3.Models.Items
             : base("Żyrandol", "Stary, zakurzony żyrandol zwisający z sufitu.", false, positionX, positionY)
         {
             AddInteraction("Oglądaj");
+        }
+
+        public override void OnInteract(string interaction, Inventory inventory)
+        {
+            if (interaction == "Oglądaj")
+            {
+                Console.WriteLine("Żyrandol wygląda na stary i zakurzony, ale nic więcej.");
+            }
+            else
+            {
+                base.OnInteract(interaction, inventory);
+            }
         }
     }
 }

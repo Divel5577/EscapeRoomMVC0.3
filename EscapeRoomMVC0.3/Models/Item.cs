@@ -10,15 +10,17 @@ namespace EscapeRoomMVC.Models.Items
         public bool IsCollectible { get; set; }
         public int PositionX { get; set; }
         public int PositionY { get; set; }
+        public string ImagePath { get; set; } // Ścieżka do obrazka ASCII
         public List<string> Interactions { get; private set; }
 
-        protected Item(string name, string description, bool isCollectible, int positionX, int positionY)
+        protected Item(string name, string description, bool isCollectible, int positionX, int positionY, string imagePath)
         {
             Name = name;
             Description = description;
             IsCollectible = isCollectible;
             PositionX = positionX;
             PositionY = positionY;
+            ImagePath = imagePath;
             Interactions = new List<string>();
         }
 
@@ -33,3 +35,4 @@ namespace EscapeRoomMVC.Models.Items
         }
     }
 }
+

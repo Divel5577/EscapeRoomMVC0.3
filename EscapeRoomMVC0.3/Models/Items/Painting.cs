@@ -5,7 +5,7 @@
         private bool isKeyholeVisible;
 
         public Painting(int positionX, int positionY)
-            : base("Obraz", "Obraz przedstawiający oko. Wygląda, jakby skrywał coś więcej.", false, positionX, positionY)
+            : base("Obraz", "Obraz przedstawiający oko. Wygląda, jakby skrywał coś więcej.", false, positionX, positionY, "Assets/Images/painting.jpg")
         {
             AddInteraction("Oglądaj");
             AddInteraction("Użyj klucza");
@@ -30,7 +30,7 @@
                 if (inventory.HasItem("Klucz"))
                 {
                     Console.WriteLine("Używasz klucza, aby otworzyć obraz. Obraz przesuwa się, odsłaniając ukryty sejf!");
-                    isKeyholeVisible = true; // Ustawienie, że klucz został użyty
+                    isKeyholeVisible = true;
                 }
                 else
                 {

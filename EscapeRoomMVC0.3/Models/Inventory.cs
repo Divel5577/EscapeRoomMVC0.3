@@ -17,8 +17,15 @@ namespace EscapeRoomMVC.Models
 
         public void AddItem(Item item)
         {
-            Items.Add(item);
-            Console.WriteLine($"{item.Name} został dodany do ekwipunku.");
+            if (!Items.Any(existingItem => existingItem.Name == item.Name))
+            {
+                Items.Add(item);
+                Console.WriteLine($"{item.Name} został dodany do ekwipunku.");
+            }
+            else
+            {
+                Console.WriteLine($"{item.Name} już znajduje się w ekwipunku.");
+            }
         }
         public Item GetItem(string name)
         {

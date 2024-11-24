@@ -1,14 +1,8 @@
-﻿using EscapeRoomMVC0._3.Controllers;
-using EscapeRoomMVC0._3.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks; 
+﻿using EscapeRoomMVC.Models;
 
-namespace EscapeRoomMVC0._3.Views
+namespace EscapeRoomMVC.Views
 {
-    public class DisplayMap
+    public static class DisplayMap
     {
         public static void Update(Room room, Player player)
         {
@@ -43,5 +37,4 @@ namespace EscapeRoomMVC0._3.Views
         }
 
     }
-
 }

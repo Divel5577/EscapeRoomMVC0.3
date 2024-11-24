@@ -1,28 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EscapeRoomMVC0._3.Models.Items
+﻿namespace EscapeRoomMVC.Models.Items
 {
     public class Bookshelf : Item
     {
         public bool IsMoved { get; private set; }
-        public Item ContainedItem { get; private set; }
+        public Item HiddenItem { get; }
 
-        public Bookshelf(int positionX, int positionY)
-            : base("Półka z książkami", "Stara półka z książkami, wygląda, jakby coś za nią było.", false, positionX, positionY)
+        public Bookshelf(int positionX, int positionY, Item hiddenItem)
+            : base("Półka", "Wygląda, jakby można ją było przesunąć.", false, positionX, positionY)
         {
-            AddInteraction("Oglądaj");
-            AddInteraction("Przesuń"); // Dodanie opcji „Przesuń”
-            ContainedItem = new Key(positionX, positionY); // Ustawienie klucza jako ukrytego przedmiotu
+            AddInteraction("Przesuń");
             IsMoved = false;
+            HiddenItem = hiddenItem;
         }
 
-        public void Move()
+        public override void OnInteract(string interaction, Inventory inventory)
         {
-            IsMoved = true;
+            if (interaction == "Przesuń" && !IsMoved)
+            {
+                IsMoved = true;
+                Console.WriteLine("Przesunąłeś półkę i odkryłeś ukryty przedmiot!");
+                inventory.AddItem(HiddenItem);
+            }
+            else if (interaction == "Przesuń" && IsMoved)
+            {
+                Console.WriteLine("Półka już została przesunięta.");
+            }
+            else
+            {
+                base.OnInteract(interaction, inventory);
+            }
         }
     }
 }

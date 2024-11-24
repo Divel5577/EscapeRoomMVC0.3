@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EscapeRoomMVC.Models.Items;
+using System.IO;
 
-namespace EscapeRoomMVC0._3.Models
+namespace EscapeRoomMVC.Models
 {
     public class Room
     {
         public string Name { get; set; }
         public string AsciiMap { get; private set; }
-        public string Legend { get; private set; } // Nowa właściwość na legendę
+        public string Legend { get; private set; }
         public List<Item> Items { get; private set; }
         public Dictionary<string, Room> Exits { get; private set; }
-        public List<Item> HiddenItems { get; private set; } // Nowa lista ukrytych przedmiotów
 
         public Room(string name, string mapFilePath, string legendFilePath)
         {
@@ -22,10 +18,8 @@ namespace EscapeRoomMVC0._3.Models
             Exits = new Dictionary<string, Room>();
             LoadMapFromFile(mapFilePath);
             LoadLegendFromFile(legendFilePath);
-            HiddenItems = new List<Item>();
         }
 
-        // Metoda do wczytywania mapy z pliku
         private void LoadMapFromFile(string filePath)
         {
             if (File.Exists(filePath))
@@ -39,12 +33,11 @@ namespace EscapeRoomMVC0._3.Models
             }
         }
 
-        // Nowa metoda do wczytywania legendy z pliku
         private void LoadLegendFromFile(string filePath)
         {
             if (File.Exists(filePath))
             {
-                Legend = File.ReadAllText(filePath); // Wczytuje całą zawartość pliku jako tekst legendy
+                Legend = File.ReadAllText(filePath);
             }
             else
             {
@@ -57,26 +50,10 @@ namespace EscapeRoomMVC0._3.Models
         {
             Items.Add(item);
         }
-        public void RemoveItem(Item item) { Items.Remove(item); }
-
-        // Metoda do dodawania ukrytego przedmiotu do widocznych przedmiotów
-        public void RevealItem(Item item)
-        {
-            if (HiddenItems.Contains(item))
-            {
-                HiddenItems.Remove(item);
-                Items.Add(item);
-            }
-        }
-        public void SetExit(string direction, Room room)
-        {
-            Exits[direction] = room;
-        }
 
         public Room GetExit(string direction)
         {
             return Exits.ContainsKey(direction) ? Exits[direction] : null;
         }
     }
-
 }

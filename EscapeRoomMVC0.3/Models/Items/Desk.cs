@@ -1,19 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EscapeRoomMVC0._3.Models.Items
+﻿namespace EscapeRoomMVC.Models.Items
 {
     public class Desk : Item
     {
         public Desk(int positionX, int positionY)
-        : base("Biurko", "Drewniane biurko z dziennikiem na wierzchu.", false, positionX, positionY)
+            : base("Biurko", "Stare drewniane biurko. Wygląda, jakby miało coś w środku.", false, positionX, positionY)
         {
-            AddInteraction("Oglądaj");
             AddInteraction("Przeszukaj");
-            ContainedItem = new Journal(positionX, positionY); // Dziennik umieszczony na biurku
+        }
+
+        public override void OnInteract(string interaction, Inventory inventory)
+        {
+            if (interaction == "Przeszukaj")
+            {
+                Console.WriteLine("W biurku znalazłeś dziennik. Dodano do ekwipunku.");
+                inventory.AddItem(new Journal(PositionX, PositionY));
+            }
+            else
+            {
+                base.OnInteract(interaction, inventory);
+            }
         }
     }
 }

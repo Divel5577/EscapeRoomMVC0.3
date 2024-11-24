@@ -2,6 +2,7 @@
 using EscapeRoomMVC.Models;
 using EscapeRoomMVC.Models.Items;
 using EscapeRoomMVC.Views;
+using EscapeRoomMVC0._3.Helpers;
 using EscapeRoomMVC0._3.Models;
 
 namespace EscapeRoomMVC.Controllers
@@ -161,16 +162,24 @@ namespace EscapeRoomMVC.Controllers
                     }
 
                     string interaction = item.Interactions[selectedIndex];
-                    Console.Clear();
 
-                    // Obsługa interakcji
+                    // Wyświetlanie obrazka ASCII zamiast opisu
+                    if (!string.IsNullOrEmpty(item.ImagePath))
+                    {
+                        AsciiPopup.Show(item.ImagePath);
+                    }
+
+                    Console.Clear();
                     player.Inventory.PerformItemInteraction(item, interaction);
 
                     Console.WriteLine("\nNaciśnij Enter, aby wrócić.");
                     Console.ReadLine();
                 }
-
-            } while (true);
+                else
+                {
+                    exitInteraction = true;
+                }
+            }
         }
 
 

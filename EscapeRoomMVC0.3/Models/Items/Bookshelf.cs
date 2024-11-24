@@ -6,7 +6,7 @@
         public Item HiddenItem { get; }
 
         public Bookshelf(int positionX, int positionY, Item hiddenItem)
-            : base("Półka", "Wygląda, jakby można ją było przesunąć.", false, positionX, positionY)
+            : base("Półka", "Wygląda, jakby można ją było przesunąć.", false, positionX, positionY, "Assets/Images/bookshelf.jpg")
         {
             AddInteraction("Przesuń");
             IsMoved = false;

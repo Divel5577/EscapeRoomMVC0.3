@@ -3,7 +3,7 @@
     public class Key : Item
     {
         public Key(int positionX, int positionY)
-            : base("Klucz", "Mały mosiężny klucz. Może pasować do zamka.", true, positionX, positionY)
+            : base("Klucz", "Mały mosiężny klucz. Może pasować do zamka.", true, positionX, positionY, "Assets/Images/key.jpg")
         {
             AddInteraction("Zbierz");
             AddInteraction("Oglądaj");

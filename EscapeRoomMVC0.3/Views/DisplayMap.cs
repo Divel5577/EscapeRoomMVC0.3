@@ -33,7 +33,7 @@ namespace EscapeRoomMVC.Views
             Console.SetCursorPosition(0, mapLines.Length + 2);
             Console.WriteLine("\nLegenda:");
             Console.WriteLine(room.Legend);
-            Console.WriteLine("\nNaciśnij strzałki, aby się poruszać lub I, aby otworzyć ekwipunek.");
+            Console.WriteLine("\nNaciśnij strzałki, aby się poruszać, I; aby otworzyć ekwipunek i S, aby zapisać stan gry.");
         }
 
     }

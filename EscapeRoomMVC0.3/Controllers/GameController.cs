@@ -11,11 +11,60 @@ namespace EscapeRoomMVC.Controllers
     {
         private Player player;
         private Room currentRoom;
+        private DateTime startTime;
+        private DateTime? endTime;
+
+        public DateTime StartTime => startTime;
+        public bool IsGameRunning { get; set; }
 
         public GameController(Player player, Room room)
         {
             this.player = player;
             this.currentRoom = room;
+            IsGameRunning = true;
+        }
+
+        public void StartGame(DateTime? loadedStartTime = null)
+        {
+            startTime = loadedStartTime ?? DateTime.Now;
+            Console.WriteLine("Gra rozpoczęta!");
+        }
+
+
+        public void EndGame()
+        {
+            endTime = DateTime.Now;
+            IsGameRunning = false;
+
+            DisplayGameTime();
+            Console.WriteLine("Dziękujemy za grę! Naciśnij dowolny klawisz, aby zakończyć.");
+            Console.ReadKey();
+            Environment.Exit(0); // Kończy program po podsumowaniu
+        }
+
+        private void DisplayGameTime()
+        {
+            if (endTime.HasValue)
+            {
+                TimeSpan gameDuration = endTime.Value - startTime;
+                Console.WriteLine($"Czas gry: {gameDuration.Hours:D2}:{gameDuration.Minutes:D2}:{gameDuration.Seconds:D2}");
+            }
+            else
+            {
+                Console.WriteLine("Gra nie została zakończona poprawnie.");
+            }
+        }
+
+        public void CheckForEndGame()
+        {
+            foreach (var item in currentRoom.Items)
+            {
+                if (item is Door door && door.IsOpen)
+                {
+                    EndGame();
+                    break;
+                }
+            }
         }
 
         public void MovePlayer(ConsoleKey direction)
@@ -75,40 +124,71 @@ namespace EscapeRoomMVC.Controllers
 
         private void InteractWithItem(Item item)
         {
-            bool exitInteraction = false;
+            int selectedIndex = 0;
+            ConsoleKey key;
 
-            while (!exitInteraction)
+            do
             {
-                int selectedIndex = InteractionMenu.DisplayInteractions(item);
-
-                if (selectedIndex != -1)
+                Console.Clear();
+                Console.WriteLine($"Interakcje z przedmiotem: {item.Name}");
+                for (int i = 0; i < item.Interactions.Count; i++)
                 {
-                    string interaction = item.Interactions[selectedIndex];
+                    if (i == selectedIndex)
+                    {
+                        Console.WriteLine($"> {item.Interactions[i]}"); // Zaznaczona opcja
+                    }
+                    else
+                    {
+                        Console.WriteLine($"  {item.Interactions[i]}");
+                    }
+                }
+                Console.WriteLine("  Wróć");
 
-                    // Wyświetlanie obrazka ASCII zamiast opisu
+                key = Console.ReadKey(true).Key;
+
+                if (key == ConsoleKey.UpArrow)
+                {
+                    selectedIndex = (selectedIndex == 0) ? item.Interactions.Count : selectedIndex - 1;
+                }
+                else if (key == ConsoleKey.DownArrow)
+                {
+                    selectedIndex = (selectedIndex == item.Interactions.Count) ? 0 : selectedIndex + 1;
+                }
+                else if (key == ConsoleKey.Enter)
+                {
+                    if (selectedIndex == item.Interactions.Count)
+                    {
+                        // Powrót do mapy
+                        return;
+                    }
+
+                    string interaction = item.Interactions[selectedIndex];
+                    Console.Clear();
+
+                    // Wyświetlenie obrazka ASCII (jeśli istnieje)
                     if (!string.IsNullOrEmpty(item.ImagePath))
                     {
                         AsciiPopup.Show(item.ImagePath);
                     }
 
-                    Console.Clear();
+                    // Obsługa interakcji
                     player.Inventory.PerformItemInteraction(item, interaction);
+
                     Console.WriteLine("\nNaciśnij Enter, aby wrócić do menu interakcji.");
                     Console.ReadLine();
                 }
-                else
-                {
-                    exitInteraction = true;
-                }
-            }
+
+            } while (true);
         }
+
 
 
         public void ShowInventory()
         {
-            bool exitInventory = false;
+            int selectedIndex = 0;
+            ConsoleKey key;
 
-            while (!exitInventory)
+            do
             {
                 Console.Clear();
                 Console.WriteLine("Twój ekwipunek:");
@@ -122,105 +202,95 @@ namespace EscapeRoomMVC.Controllers
                     return;
                 }
 
-                int selectedIndex = 0;
-                ConsoleKey key;
-
-                do
+                for (int i = 0; i < items.Count; i++)
                 {
-                    Console.Clear();
-                    Console.WriteLine("Twój ekwipunek:");
-                    for (int i = 0; i < items.Count; i++)
+                    if (i == selectedIndex)
                     {
-                        if (i == selectedIndex)
-                        {
-                            Console.WriteLine($"> {items[i].Name}"); // Zaznaczony przedmiot
-                        }
-                        else
-                        {
-                            Console.WriteLine($"  {items[i].Name}");
-                        }
+                        Console.WriteLine($"> {items[i].Name}"); // Zaznaczony przedmiot
                     }
-                    Console.WriteLine("\nUżyj strzałek do wyboru, Enter aby wybrać, Esc aby wyjść.");
+                    else
+                    {
+                        Console.WriteLine($"  {items[i].Name}");
+                    }
+                }
+                Console.WriteLine("  Wróć");
 
-                    key = Console.ReadKey(true).Key;
+                key = Console.ReadKey(true).Key;
 
-                    if (key == ConsoleKey.UpArrow)
+                if (key == ConsoleKey.UpArrow)
+                {
+                    selectedIndex = (selectedIndex == 0) ? items.Count : selectedIndex - 1;
+                }
+                else if (key == ConsoleKey.DownArrow)
+                {
+                    selectedIndex = (selectedIndex == items.Count) ? 0 : selectedIndex + 1;
+                }
+                else if (key == ConsoleKey.Enter)
+                {
+                    if (selectedIndex == items.Count)
                     {
-                        selectedIndex = (selectedIndex == 0) ? items.Count - 1 : selectedIndex - 1;
-                    }
-                    else if (key == ConsoleKey.DownArrow)
-                    {
-                        selectedIndex = (selectedIndex == items.Count - 1) ? 0 : selectedIndex + 1;
-                    }
-                    else if (key == ConsoleKey.Enter)
-                    {
-                        var selectedItem = items[selectedIndex];
-                        ShowItemInteractions(selectedItem); // Wyświetlenie menu interakcji
+                        return; // Powrót do mapy
                     }
 
-                } while (key != ConsoleKey.Escape);
+                    var selectedItem = items[selectedIndex];
+                    ShowItemInteractions(selectedItem); // Wywołanie menu interakcji dla przedmiotu
+                }
 
-                exitInventory = true;
-            }
+            } while (true);
         }
+
         private void ShowItemInteractions(Item item)
         {
-            bool exitItemMenu = false;
+            int selectedIndex = 0;
+            ConsoleKey key;
 
-            while (!exitItemMenu)
+            do
             {
-                int selectedIndex = 0;
-                ConsoleKey key;
-
-                do
+                Console.Clear();
+                Console.WriteLine($"Interakcje z przedmiotem: {item.Name}");
+                for (int i = 0; i < item.Interactions.Count; i++)
                 {
+                    if (i == selectedIndex)
+                    {
+                        Console.WriteLine($"> {item.Interactions[i]}"); // Zaznaczona opcja
+                    }
+                    else
+                    {
+                        Console.WriteLine($"  {item.Interactions[i]}");
+                    }
+                }
+                Console.WriteLine("  Wróć");
+
+                key = Console.ReadKey(true).Key;
+
+                if (key == ConsoleKey.UpArrow)
+                {
+                    selectedIndex = (selectedIndex == 0) ? item.Interactions.Count : selectedIndex - 1;
+                }
+                else if (key == ConsoleKey.DownArrow)
+                {
+                    selectedIndex = (selectedIndex == item.Interactions.Count) ? 0 : selectedIndex + 1;
+                }
+                else if (key == ConsoleKey.Enter)
+                {
+                    if (selectedIndex == item.Interactions.Count)
+                    {
+                        return; // Powrót do ekwipunku
+                    }
+
+                    string interaction = item.Interactions[selectedIndex];
                     Console.Clear();
-                    Console.WriteLine($"Interakcje z: {item.Name}");
-                    for (int i = 0; i < item.Interactions.Count; i++)
-                    {
-                        if (i == selectedIndex)
-                        {
-                            Console.WriteLine($"> {item.Interactions[i]}"); // Zaznaczona opcja
-                        }
-                        else
-                        {
-                            Console.WriteLine($"  {item.Interactions[i]}");
-                        }
-                    }
-                    Console.WriteLine("  Wróć");
 
-                    key = Console.ReadKey(true).Key;
+                    // Obsługa interakcji
+                    player.Inventory.PerformItemInteraction(item, interaction);
 
-                    if (key == ConsoleKey.UpArrow)
-                    {
-                        selectedIndex = (selectedIndex == 0) ? item.Interactions.Count : selectedIndex - 1;
-                    }
-                    else if (key == ConsoleKey.DownArrow)
-                    {
-                        selectedIndex = (selectedIndex == item.Interactions.Count) ? 0 : selectedIndex + 1;
-                    }
-                    else if (key == ConsoleKey.Enter)
-                    {
-                        if (selectedIndex == item.Interactions.Count)
-                        {
-                            exitItemMenu = true; // Wyjście z menu interakcji
-                        }
-                        else
-                        {
-                            string interaction = item.Interactions[selectedIndex];
-                            Console.Clear();
+                    Console.WriteLine("\nNaciśnij Enter, aby wrócić.");
+                    Console.ReadLine();
+                }
 
-                            // Wywołanie logiki interakcji
-                            player.Inventory.PerformItemInteraction(item, interaction);
-
-                            Console.WriteLine("\nNaciśnij Enter, aby wrócić do menu interakcji.");
-                            Console.ReadLine();
-                        }
-                    }
-
-                } while (!exitItemMenu);
-            }
+            } while (true);
         }
+
 
 
         private Item GetItemAtPosition(int x, int y)

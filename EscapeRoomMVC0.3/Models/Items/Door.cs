@@ -1,16 +1,21 @@
-﻿namespace EscapeRoomMVC.Models.Items
+﻿using EscapeRoomMVC.Controllers;
+using EscapeRoomMVC0._3.Models;
+
+namespace EscapeRoomMVC.Models.Items
 {
     public class Door : Item
     {
         public string Code { get; }
         public bool IsOpen { get; private set; }
+        private GameController gameController;
 
-        public Door(int positionX, int positionY, string code)
-            : base("drzwi", "Metalowe drzwi z klawiaturą numeryczną.", false, positionX, positionY, "Assets/Images/door.jpg")
+        public Door(int positionX, int positionY, string code, GameController controller)
+            : base("Drzwi", "Metalowe drzwi z klawiaturą numeryczną. Musisz wpisać kod, aby je otworzyć.", false, positionX, positionY, "Assets/Images/door.jpg")
         {
             AddInteraction("Otwórz");
             Code = code;
             IsOpen = false;
+            gameController = controller;
         }
 
         public override void OnInteract(string interaction, Inventory inventory)
@@ -21,9 +26,8 @@
                 string inputCode = Console.ReadLine();
                 if (inputCode == Code)
                 {
-                    IsOpen = true;
-                    Console.WriteLine("Drzwi zostały otwarte! Gratulacje, udało Ci się uciec!");
-                    Environment.Exit(0);
+                    Console.WriteLine("Drzwi zostały otwarte!");
+                    gameController.EndGame();
                 }
                 else
                 {

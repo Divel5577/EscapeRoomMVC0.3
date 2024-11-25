@@ -1,4 +1,4 @@
-﻿using EscapeRoomMVC.Controllers;
+using EscapeRoomMVC.Controllers;
 using EscapeRoomMVC.Helpers;
 using EscapeRoomMVC.Models;
 using EscapeRoomMVC.Views;

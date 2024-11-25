@@ -2,8 +2,10 @@
 {
     public class Desk : Item
     {
+        public Desk() : base() { } // Bezparametrowy konstruktor
+
         public Desk(int positionX, int positionY)
-            : base("biórko", "Stary drewniany stół.", false, positionX, positionY, "Assets/Images/desk.jpg")
+            : base("Biurko", "Stary drewniany stół.", false, positionX, positionY, "Assets/Images/desk.jpg")
         {
             AddInteraction("Przeszukaj");
         }

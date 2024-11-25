@@ -4,6 +4,8 @@
     {
         private bool isKeyholeVisible;
 
+        public Painting() : base() { } // Bezparametrowy konstruktor
+
         public Painting(int positionX, int positionY)
             : base("Obraz", "Obraz przedstawiający oko. Wygląda, jakby skrywał coś więcej.", false, positionX, positionY, "Assets/Images/painting.jpg")
         {

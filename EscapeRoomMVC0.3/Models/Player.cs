@@ -11,13 +11,12 @@
         {
             Inventory = new Inventory(); // Inicjalizacja Inventory
         }
-        public Player(int startX, int startY)
+        public Player(int startX, int startY) : this()
         {
             PositionX = startX;
             PositionY = startY;
             LastPositionX = startX;
             LastPositionY = startY;
-            Inventory = new Inventory();
         }
 
         public void Move(int deltaX, int deltaY)

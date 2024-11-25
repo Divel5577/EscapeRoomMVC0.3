@@ -2,6 +2,8 @@
 {
     public class Key : Item
     {
+        public Key() : base() { } // Bezparametrowy konstruktor
+
         public Key(int positionX, int positionY)
             : base("Klucz", "Mały mosiężny klucz. Może pasować do zamka.", true, positionX, positionY, "Assets/Images/key.jpg")
         {

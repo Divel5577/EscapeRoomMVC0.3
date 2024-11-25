@@ -3,7 +3,9 @@
     public class Bookshelf : Item
     {
         public bool IsMoved { get; private set; }
-        public Item HiddenItem { get; }
+        public Item HiddenItem { get; private set; }
+
+        public Bookshelf() : base() { } // Bezparametrowy konstruktor
 
         public Bookshelf(int positionX, int positionY, Item hiddenItem)
             : base("Półka", "Wygląda, jakby można ją było przesunąć.", false, positionX, positionY, "Assets/Images/bookshelf.jpg")

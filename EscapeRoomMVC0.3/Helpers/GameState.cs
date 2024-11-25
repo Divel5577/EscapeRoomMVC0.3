@@ -10,22 +10,19 @@ namespace EscapeRoomMVC.Helpers
         public required Player Player { get; set; }
         public required string CurrentRoomName { get; set; }
         public DateTime StartTime { get; set; }
-        public GameState()
-        {
-            Player = new Player();
-            CurrentRoomName = string.Empty;
-            StartTime = DateTime.Now;
-        }
 
         public static void Save(GameState state, string filePath)
         {
             try
             {
-                string json = JsonSerializer.Serialize(state, new JsonSerializerOptions
+                var options = new JsonSerializerOptions
                 {
-                    WriteIndented = true, // Formatowanie dla lepszej czytelności
-                    IncludeFields = true // Uwzględnia pola
-                });
+                    IncludeFields = true,
+                    WriteIndented = true,
+                    Converters = { new ItemJsonConverter() } // Dodanie konwertera
+                };
+
+                string json = JsonSerializer.Serialize(state, options);
 
                 File.WriteAllText(filePath, json);
                 Console.WriteLine($"Stan gry został zapisany w: {filePath}");
@@ -35,9 +32,10 @@ namespace EscapeRoomMVC.Helpers
                 Console.WriteLine($"Błąd podczas zapisywania stanu gry: {ex.Message}");
             }
         }
+    
 
 
-        public static GameState? Load(string filePath)
+        public static GameState Load(string filePath)
         {
             try
             {
@@ -48,10 +46,14 @@ namespace EscapeRoomMVC.Helpers
                 }
 
                 string json = File.ReadAllText(filePath);
-                var state = JsonSerializer.Deserialize<GameState>(json, new JsonSerializerOptions
+                var options = new JsonSerializerOptions
                 {
-                    IncludeFields = true // Uwzględnia pola
-                });
+                    IncludeFields = true,
+                    WriteIndented = true,
+                    Converters = { new ItemJsonConverter() } // Dodanie konwertera
+                };
+
+                var state = JsonSerializer.Deserialize<GameState>(json, options);
 
                 Console.WriteLine($"Stan gry został wczytany z: {filePath}");
                 return state;
@@ -62,6 +64,5 @@ namespace EscapeRoomMVC.Helpers
                 return null;
             }
         }
-
     }
 }

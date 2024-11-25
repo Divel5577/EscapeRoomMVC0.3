@@ -12,7 +12,10 @@ namespace EscapeRoomMVC.Models.Items
         public int PositionY { get; set; }
         public string ImagePath { get; set; } // Ścieżka do obrazka ASCII
         public List<string> Interactions { get; private set; }
-
+        public Item() // Konstruktor bezparametrowy wymagany do deserializacji
+        {
+            Interactions = new List<string>();
+        }
         protected Item(string name, string description, bool isCollectible, int positionX, int positionY, string imagePath)
         {
             Name = name;

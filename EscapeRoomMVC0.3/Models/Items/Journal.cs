@@ -2,7 +2,9 @@
 {
     public class Journal : Item
     {
-        public string Content { get; }
+        public string Content { get; private set; }
+
+        public Journal() : base() { } // Bezparametrowy konstruktor
 
         public Journal(int positionX, int positionY)
             : base("Dziennik", "Stary dziennik z pożółkłymi kartkami, leżący na biurku.", true, positionX, positionY, "Assets/Images/journal.jpg")

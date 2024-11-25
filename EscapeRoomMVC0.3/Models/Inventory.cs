@@ -3,18 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Text.Json.Serialization;
 
 namespace EscapeRoomMVC.Models
 {
     public class Inventory
     {
-        private List<Item> Items;
+        [JsonInclude] // Umożliwia serializację pola do JSON
+        public List<Item> Items { get; private set; }
 
         public Inventory()
         {
             Items = new List<Item>();
         }
-
         public void AddItem(Item item)
         {
             if (!Items.Any(existingItem => existingItem.Name == item.Name))
@@ -27,9 +28,9 @@ namespace EscapeRoomMVC.Models
                 Console.WriteLine($"{item.Name} już znajduje się w ekwipunku.");
             }
         }
-        public Item GetItem(string name)
+        public Item GetItem(string itemName)
         {
-            return Items.FirstOrDefault(i => i.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return Items.Find(item => item.Name == itemName);
         }
 
         public List<Item> GetItems()
@@ -43,9 +44,9 @@ namespace EscapeRoomMVC.Models
         }
 
 
-        public bool HasItem(string name)
+        public bool HasItem(string itemName)
         {
-            return Items.Any(i => i.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return Items.Exists(item => item.Name == itemName);
         }
 
     }

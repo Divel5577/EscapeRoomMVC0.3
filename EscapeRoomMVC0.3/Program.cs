@@ -8,7 +8,7 @@ public class Program
 {
     static void Main()
     {
-        string saveFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "game_save.json");
+        string saveFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "game_save.json");
         Player player = null;
         Room startRoom = null;
         GameController gameController = null;

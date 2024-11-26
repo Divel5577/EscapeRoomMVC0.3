@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using EscapeRoomMVC0._3.Helpers;
 using Spectre.Console;
 
-namespace EscapeRoomMVC0._3.Helpers
+namespace EscapeRoomMVC0._3.Views
 {
     public static class AsciiPopup
     {
@@ -24,7 +24,7 @@ namespace EscapeRoomMVC0._3.Helpers
             AnsiConsole.Write(panel);
 
             // Powrót do gry
-            AnsiConsole.MarkupLine("\n[bold yellow]Naciśnij dowolny klawisz, aby wrócić...[/]");
+            AnsiConsole.MarkupLine("\n[bold yellow]Naciśnij dowolny klawisz, aby kontynuować...[/]");
             Console.ReadKey();
         }
     }

@@ -4,7 +4,7 @@
     {
         private bool isKeyholeVisible;
 
-        public Painting() : base() { } // Bezparametrowy konstruktor
+        public Painting() : base() { } 
 
         public Painting(int positionX, int positionY)
             : base("Obraz", "Obraz przedstawiający oko. Wygląda, jakby skrywał coś więcej.", false, positionX, positionY, "Assets/Images/painting.jpg")
@@ -31,7 +31,7 @@
             {
                 if (inventory.HasItem("Klucz"))
                 {
-                    Console.WriteLine("Używasz klucza, aby otworzyć obraz. Obraz przesuwa się, odsłaniając ukryty sejf!");
+                    Console.WriteLine("Używasz klucza, aby otworzyć obraz. Obraz przesuwa się, odsłaniając ukryty kod! Kod:4392");
                     isKeyholeVisible = true;
                 }
                 else

@@ -22,7 +22,7 @@ namespace EscapeRoomMVC.Helpers
 
                 return typeName switch
                 {
-                    nameof(Bookshelf) => new Bookshelf(positionX, positionY, null), // Replace `null` with appropriate logic for `HiddenItem`
+                    nameof(Bookshelf) => new Bookshelf(positionX, positionY, null),
                     nameof(Chandelier) => new Chandelier(positionX, positionY),
                     nameof(Cobweb) => new Cobweb(positionX, positionY),
                     nameof(Desk) => new Desk(positionX, positionY),

@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing; // Dodaj to przestrzeń nazw
+using SixLabors.ImageSharp.Processing; 
 
 namespace EscapeRoomMVC0._3.Helpers
 {

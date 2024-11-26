@@ -4,12 +4,12 @@
     {
         public int PositionX { get; set; }
         public int PositionY { get; set; }
-        public int LastPositionX { get; set; } // Nowe pole
-        public int LastPositionY { get; set; } // Nowe pole
+        public int LastPositionX { get; set; }
+        public int LastPositionY { get; set; }
         public Inventory Inventory { get; set; }
         public Player()
         {
-            Inventory = new Inventory(); // Inicjalizacja Inventory
+            Inventory = new Inventory();
         }
         public Player(int startX, int startY) : this()
         {

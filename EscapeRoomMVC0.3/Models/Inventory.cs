@@ -35,7 +35,7 @@ namespace EscapeRoomMVC.Models
 
         public List<Item> GetItems()
         {
-            return Items; // Zwraca listę przedmiotów w ekwipunku
+            return Items; 
         }
 
         public void PerformItemInteraction(Item item, string interaction)

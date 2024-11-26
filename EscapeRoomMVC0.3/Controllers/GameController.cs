@@ -2,8 +2,8 @@
 using EscapeRoomMVC.Models;
 using EscapeRoomMVC.Models.Items;
 using EscapeRoomMVC.Views;
-using EscapeRoomMVC0._3.Helpers;
 using EscapeRoomMVC0._3.Models;
+using EscapeRoomMVC0._3.Views;
 
 namespace EscapeRoomMVC.Controllers
 {

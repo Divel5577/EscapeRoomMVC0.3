@@ -1,6 +1,7 @@
 ﻿using EscapeRoomMVC.Controllers;
 using EscapeRoomMVC.Models.Items;
 using EscapeRoomMVC.Models;
+using EscapeRoomMVC0._3.Views;
 
 public class Door : Item
 {
@@ -33,6 +34,10 @@ public class Door : Item
             if (inputCode == Code)
             {
                 Console.WriteLine("Drzwi zostały otwarte!");
+                IsOpen = true;
+
+                // Wyświetl obraz drzwi tylko raz bez ReadKey, gdy gra się kończy
+                AsciiPopup.Show(ImagePath, isGameRunning: false);
                 gameController?.EndGame();
             }
             else
@@ -45,4 +50,5 @@ public class Door : Item
             base.OnInteract(interaction, inventory);
         }
     }
+
 }

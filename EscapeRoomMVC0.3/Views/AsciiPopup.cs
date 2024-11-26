@@ -10,7 +10,7 @@ namespace EscapeRoomMVC0._3.Views
 {
     public static class AsciiPopup
     {
-        public static void Show(string imagePath)
+        public static void Show(string imagePath, bool isGameRunning = true)
         {
             // Konwersja obrazu na ASCII
             string asciiArt = AsciiArtConverter.ConvertImageToAscii(imagePath);
@@ -23,10 +23,12 @@ namespace EscapeRoomMVC0._3.Views
 
             AnsiConsole.Write(panel);
 
-            // Powrót do gry
-            AnsiConsole.MarkupLine("\n[bold yellow]Naciśnij dowolny klawisz, aby kontynuować...[/]");
-            Console.ReadKey();
+            // Powrót do gry, jeśli gra nadal trwa
+            if (isGameRunning)
+            {
+                AnsiConsole.MarkupLine("\n[bold yellow]Naciśnij dowolny klawisz, aby kontynuować...[/]");
+                Console.ReadKey();
+            }
         }
     }
 }
-
